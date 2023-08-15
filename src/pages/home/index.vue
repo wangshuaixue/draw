@@ -1,22 +1,29 @@
+<!--
+ * @author: wangshuaixue
+ * @Date: 2023-07-04 14:37:53
+ * @description: 
+ * @LastEditTime: 2023-08-14 14:55:52
+ * @LastEditors: wangshuaixue
+ * @FilePath: /draw/src/pages/home/index.vue
+-->
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png"></image>
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <text class="title">首页</text>
     </view>
   </view>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      title: 'Hello',
-    }
-  },
-  onLoad() {},
-  methods: {},
-}
+  export default {
+    data() {
+      return {
+        title: 'Hello',
+      };
+    },
+    onLoad() {},
+    methods: {},
+  };
 </script>
 
 <style>
