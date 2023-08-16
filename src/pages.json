@@ -3,22 +3,20 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "作品展示"
 			}
 		},
 		{
 			"path": "pages/picture/index",
 			"style": {
-				"navigationBarTitleText": "简历",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "简历"
 			}
 		},
 		{
 			"path": "pages/my/index",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"navigationBarBackgroundColor": "#EFFFF9",
-				"navigationStyle": "custom"
+				"navigationBarBackgroundColor": "#EFFFF9"
 			}
 		},
 	],
@@ -49,7 +47,7 @@
 				"pagePath": "pages/picture/index",
 				"iconPath": "static/images/tab-center.png",
 				"selectedIconPath": "static/images/tab-center-sel.png",
-				"text": "简历"
+				"text": "绘图"
 			},
 			{
 				"pagePath": "pages/my/index",
