@@ -2,46 +2,82 @@
  * @author: wangshuaixue
  * @Date: 2023-07-04 14:37:53
  * @description: 
- * @LastEditTime: 2023-08-16 15:29:20
+ * @LastEditTime: 2023-08-18 17:48:21
  * @LastEditors: wangshuaixue
  * @FilePath: /draw/src/pages/home/index.vue
 -->
 <template>
   <view class="content">
-    <view class="box">
+    <view
+      class="box"
+      @click="toDetail(item)"
+      v-for="(item,index) in list"
+      :key="index"
+    >
       <image
         class="img"
-        src="https://file.tangchenglive.com/uploadfile/20230707/535841053627027457.png"
+        :src="`https://image.chatai-gpt4.com/${item.artworkItemVo.pictures[0].imageUrl}?imageMogr2/format/webp`"
       ></image>
-      <view class="desc">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</view>
+      <view
+        class="desc"
+        v-if="item.artworkItemVo.title"
+      >{{item.artworkItemVo.title}}</view>
       <view class="line-wrap">
         <view class="user-wrap">
           <image
             class="avat"
-            src="https://file.tangchenglive.com/uploadfile/20230707/535841053627027457.png"
+            :src="item.userInfoVo.avatarUrl"
           ></image>
-          <text>昵称 名称1111</text>
+          <text>{{item.userInfoVo.userName}}</text>
         </view>
-        <uni-icons
-          type="heart"
-          size="20"
-          color="#FF7C33"
-        ></uni-icons>
-        <!-- <uni-icons type="heart-filled" size="20" color="#FF7C33"></uni-icons> -->
+        <view class="flex">
+          <uni-icons
+            type="heart-filled"
+            size="20"
+            color="#FF7C33"
+            v-if="item.userInfoVo.likedStatus"
+          ></uni-icons>
+          <uni-icons
+            v-else
+            type="heart"
+            size="20"
+            color="#FF7C33"
+          ></uni-icons>
+          <text
+            class="number"
+            v-if="item.artworkItemVo.likeCount > 0"
+          >{{item.artworkItemVo.likeCount}}</text>
+        </view>
       </view>
     </view>
   </view>
 </template>
 
 <script>
+  import { getHomeList } from '@/api/home';
   export default {
     data() {
       return {
-        title: 'Hello',
+        list: [],
       };
     },
-    onLoad() {},
-    methods: {},
+    async onLoad() {
+      let { code, data } = await getHomeList({
+        page: 1,
+        pageSize: 20,
+      });
+      if (code == 200) {
+        this.list = data.items;
+      }
+    },
+    methods: {
+      toDetail(para) {
+        uni.setStorageSync('detail', para);
+        uni.navigateTo({
+          url: '/otherPkg/pages/detail',
+        });
+      },
+    },
   };
 </script>
 
@@ -54,12 +90,20 @@
   border-radius: 10rpx;
   overflow: hidden;
   box-shadow: 0rpx 10rpx 24rpx 0rpx rgba(225, 225, 225, 0.5);
+  margin-bottom: 20rpx;
   .desc {
     padding: 0 10rpx;
     margin-top: 10rpx;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+  .number {
+    color: #ff7c33;
   }
   .line-wrap {
     padding: 0 10rpx 14rpx;

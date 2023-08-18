@@ -18,7 +18,20 @@
 				"navigationBarTitleText": "我的",
 				"navigationBarBackgroundColor": "#EFFFF9"
 			}
-		},
+		}
+	],
+	"subpackages": [
+		{
+			"root": "otherPkg",
+			"pages": [
+				{
+					"path": "pages/detail",
+					"style": {
+						"navigationBarTitleText": "详情"
+					}
+				}
+			]
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
